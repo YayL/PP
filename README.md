@@ -5,7 +5,7 @@ choose to publish it publicly in the case of anyone waning to test it out and re
 
 Keybinds:                                                                
   Menu:                                                           
-    [Space] Start the game                                                              
+    [Space] Start the game                                                               
                                                       
   Game:                                                            
     [W] Move player paddle up(blue) {Only if both paddles are not controlled by the program}                               
