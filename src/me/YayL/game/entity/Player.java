@@ -16,13 +16,14 @@ public class Player extends MovingEntity {
 
 	public static int speed = paddleSpeed;
 	
-	private int Width = Display.Width, Height = Display.Height;
+	private final int Width = Display.Width;
 
 	public Player(Controller controller) {
 		super(controller);
 
 		size = new Size(25, 125);
-		pos = new Pos(5, (Height - size.getHeight()) / 2);
+		int height = Display.Height;
+		pos = new Pos(5, (height - size.getHeight()) / 2);
 	}
 
 	@Override

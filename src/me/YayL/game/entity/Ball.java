@@ -13,15 +13,14 @@ import me.YayL.game.entity.handler.Pos;
 import me.YayL.game.entity.handler.Size;
 import me.YayL.game.graphics.Display;
 import me.YayL.game.graphics.Vector2D;
-import me.YayL.game.states.GameState;
 
 public class Ball extends MovingEntity{
 
 	private Movement movement;
-	private int speed = ballSpeed;
+	private final int speed = ballSpeed;
 	private Vector2D vector;
-	
-	private int Width = Display.Width, Height = Display.Height;
+
+	private final int Height = Display.Height;
 	
 	private Vector2D getVector() {
 		return this.vector;
@@ -32,10 +31,7 @@ public class Ball extends MovingEntity{
 	}
 	
 	public static boolean isBallDead(GameObject ball) {
-		if(ball.getPos().getX() <= 0 || ball.getPos().getX()+(ball.getSize().getWidth()) >= 720) {
-			return true;
-		}
-		return false;
+		return (ball.getPos().getX() <= 0 || ball.getPos().getX() + (ball.getSize().getWidth()) >= 720);
 	}
 	
 	private int startVel(int x, int y) {
@@ -61,10 +57,11 @@ public class Ball extends MovingEntity{
 		super(null);
 		Random rand = new Random();
 		this.movement = new Movement(speed, startVel(rand.nextInt(10000), rand.nextInt(3)), startVel(rand.nextInt(10), rand.nextInt(3)));
-		this.hits = 0;
+		hits = 0;
 		
 		size = new Size(25, 25);
-		pos = new Pos(Width/2 - size.getWidth(), (Height-size.getHeight())/2);
+		int width = Display.Width;
+		pos = new Pos(width /2 - size.getWidth(), (Height-size.getHeight())/2);
 	}
 
 	// Ball Movement: 

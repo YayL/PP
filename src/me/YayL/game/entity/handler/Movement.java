@@ -2,12 +2,11 @@ package me.YayL.game.entity.handler;
 
 import me.YayL.game.graphics.Vector2D;
 import me.YayL.game.controllers.Controller;
-import me.YayL.game.controllers.PlayerController;
 
 public class Movement {
 	
 	private Vector2D vector;
-	private double speed;
+	private final double speed;
 	
 	public Movement(double speed, int startX, int startY) {
 		this.vector = new Vector2D(startX, startY);

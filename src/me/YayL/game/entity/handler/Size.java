@@ -2,8 +2,8 @@ package me.YayL.game.entity.handler;
 
 
 public class Size {
-	private int width;
-	private int height;
+	private final int width;
+	private final int height;
 	
 	public Size(int width, int height) {
 		this.width = width;

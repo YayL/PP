@@ -11,7 +11,7 @@ import me.YayL.game.controllers.AIController;
 
 public class Computer extends MovingEntity{
 	
-	private int speed = paddleSpeed;
+	private final int speed = paddleSpeed;
 	
 	private Vector2D vector;
 	
@@ -29,9 +29,8 @@ public class Computer extends MovingEntity{
 		pos = new Pos(1280-(size.getWidth()+5), (720-size.getHeight())/2);
 	}
 
-	private int compDiff = 1;
-	
 	public void update() {
+		int compDiff = 1;
 		AIController.calculateMovement(compDiff, gameObjects.get(1));
 		super.update();
 	}

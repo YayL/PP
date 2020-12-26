@@ -10,7 +10,7 @@ import me.YayL.game.ui.*;
 
 public class MenuState extends State{
 
-	private Color transparent = new Color(0,0,0,0);
+	private final Color transparent = new Color(0,0,0,0);
 
 	public MenuState(Input input) {
 		super(input);

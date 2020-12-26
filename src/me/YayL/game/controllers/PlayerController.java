@@ -6,7 +6,7 @@ import me.YayL.game.listeners.Input;
 
 public class PlayerController implements Controller{
 
-	private Input input;
+	private final Input input;
 	
 	public PlayerController(Input input) {
 		this.input = input;

@@ -2,7 +2,6 @@ package me.YayL.game.entity.handler;
 
 import java.util.List;
 
-import me.YayL.game.entity.Ball;
 import me.YayL.game.entity.Player;
 import me.YayL.game.graphics.Display;
 import me.YayL.game.states.State;
@@ -29,11 +28,11 @@ public abstract class MovingEntity extends GameObject{
 		super();
 		this.controller = controller;
 		this.movement = new Movement(Player.speed, 0, 0);
-		this.gameObjects = State.getGameObjects();
+		gameObjects = State.getGameObjects();
 	}
 
 	protected boolean isOutOfBounds(GameObject object) {
-		return ((object.getPos().getY() + movement.getVector().getY()) >= 0 && (object.getPos().getY() + movement.getVector().getY()) < (Height-object.getSize().getHeight())) ? true : false; 
+		return ((object.getPos().getY() + movement.getVector().getY()) >= 0 && (object.getPos().getY() + movement.getVector().getY()) < (Height-object.getSize().getHeight())) ? true : false;
 	}
 
 	protected static double[] getObjectSpecs(GameObject object, int type) {

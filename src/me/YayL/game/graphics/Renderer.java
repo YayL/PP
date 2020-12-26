@@ -7,7 +7,7 @@ import me.YayL.game.states.State;
 public class Renderer {
 
 	private void renderGameObject(State state, Graphics graphics){
-		state.getGameObjects().forEach(gameObject -> graphics.drawImage(
+		State.getGameObjects().forEach(gameObject -> graphics.drawImage(
 				gameObject.getSprite(),
 				gameObject.getPos().intX(),
 				gameObject.getPos().intY(),

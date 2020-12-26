@@ -1,13 +1,11 @@
 package me.YayL.game.states;
 
 import me.YayL.game.entity.handler.GameObject;
-import me.YayL.game.entity.handler.MovingEntity;
 import me.YayL.game.listeners.Input;
 import me.YayL.game.ui.UIContainer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class State {
 	
@@ -16,12 +14,9 @@ public abstract class State {
 	protected List<UIContainer> uiContainers;
 
 	private static State state;
-	
-	private static State gameState;
-	private static State menuState;
-	
+
 	public State(Input input) {
-		this.input = input;
+		State.input = input;
 		gameObjects = new ArrayList<>();
 		uiContainers = new ArrayList<>();
 	}
@@ -48,10 +43,10 @@ public abstract class State {
 	public static void newState(String state) {
 		if(state == "gameState") {
 			State.state = new GameState(input);
-			gameState = State.state;
+			State gameState = State.state;
 		}else if(state == "menuState") {
 			State.state = new MenuState(input);
-			menuState = State.state;
+			State menuState = State.state;
 		}
 	}
 

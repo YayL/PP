@@ -14,8 +14,8 @@ import me.YayL.game.states.State;
 public class Display extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private Canvas canvas;
-	private Renderer renderer;
+	private final Canvas canvas;
+	private final Renderer renderer;
 	public static int Height, Width;
 	
 	public Display(int width, int height, Input input) {

@@ -11,7 +11,7 @@ public class AIController implements Controller{
     static boolean[] controls; // [0] Up [1] Down
 
     public AIController(){
-        this.controls =  new boolean[]{false, false};
+        controls =  new boolean[]{false, false};
     }
 
 
@@ -25,11 +25,10 @@ public class AIController implements Controller{
 
     public static void  medAI(GameObject object) { // Follow the ball
 
-        GameObject c = object;
         GameObject b = MovingEntity.gameObjects.get(2);
 
         double ballMiddle = b.getPos().getY() + b.getSize().getHeight()/2;
-        double compMiddle = c.getPos().getY() + c.getSize().getHeight()/2;
+        double compMiddle = object.getPos().getY() + object.getSize().getHeight()/2;
 
         if(ballMiddle > compMiddle){
             controls[0] = false;

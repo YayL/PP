@@ -1,7 +1,6 @@
 package me.YayL.game.entity.handler;
 
 import me.YayL.game.graphics.Vector2D;
-import me.YayL.game.main.Game;
 
 public class Pos {
 	private double x;
