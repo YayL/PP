@@ -31,8 +31,8 @@ public class Ball extends MovingEntity{
 		this.vector = vector;
 	}
 	
-	private boolean isBallDead(GameObject ball) {
-		if(ball.getPos().getX() <= 0 || ball.getPos().getX()+(ball.getSize().getWidth()) >= Width) {
+	public static boolean isBallDead(GameObject ball) {
+		if(ball.getPos().getX() <= 0 || ball.getPos().getX()+(ball.getSize().getWidth()) >= 720) {
 			return true;
 		}
 		return false;
@@ -60,7 +60,7 @@ public class Ball extends MovingEntity{
 	public Ball() {
 		super(null);
 		Random rand = new Random();
-		this.movement = new Movement(speed, startVel(rand.nextInt(10000), rand.nextInt(3)), startVel(rand.nextInt(10000), rand.nextInt(3)));
+		this.movement = new Movement(speed, startVel(rand.nextInt(10000), rand.nextInt(3)), startVel(rand.nextInt(10), rand.nextInt(3)));
 		this.hits = 0;
 		
 		size = new Size(25, 25);
@@ -70,10 +70,13 @@ public class Ball extends MovingEntity{
 	// Ball Movement: 
 	
 	public void update() {
-		
+
 		vector = calculateMovement(new Pos(gameObjects.get(2).getPos().getX(), gameObjects.get(2).getPos().getY()));
 		vector.normalize();
-		vector.multiply(speed + (Math.pow(hits, 2)/200));
+
+		double extraSpeed = ((Math.pow(Math.log(hits), 3))/6.289);
+
+		vector.multiply(speed + ((extraSpeed>=1) ? extraSpeed : 0)); // +20 at 150 hits
 		
 		if(vector != null) {
 			setVector(vector);
@@ -82,10 +85,6 @@ public class Ball extends MovingEntity{
 		movement = new Movement(speed, (int) Math.round(vector.getX()), (int) Math.round(vector.getY()));
 		
 		pos.apply(movement, null);
-		
-		if(isBallDead(gameObjects.get(2))) { 
-			GameState.stop();
-		}
 	}
 	
 	
@@ -102,13 +101,17 @@ public class Ball extends MovingEntity{
 		double[] plr = getObjectSpecs(gameObjects.get(0), 0); // [0] Right [1] Top [2] Bottom
 		double[] comp = getObjectSpecs(gameObjects.get(1), 1);// [0] Left [1] Top [2] Bottom
 		double[] circle = getObjectSpecs(gameObjects.get(2), 2);// [0] Left [1] Right [2] Top [3] Bottom
-		
-		if(circle[0]<=plr[0] && circle[2] < plr[2] && circle[3] > plr[1] ) { // If ball hits paddle
+
+		if(vector == null){
+			return vector;
+		}
+
+		if(circle[0]+vector.getX() <= plr[0] && circle[2] < plr[2] && circle[3] > plr[1] ) { // If ball hits paddle
 			setHits(getHits()+1);
 			return new Vector2D(vector.getX()*-1, vector.getY());
 		}
 		
-		if(circle[1] >= comp[0] && circle[2] < comp[2] && circle[3] > comp[1]) {
+		if(circle[1]+vector.getX() >= comp[0] && circle[2] < comp[2] && circle[3] > comp[1]) {
 			setHits(getHits()+1);
 			return new Vector2D(vector.getX()*-1, vector.getY());
 		}

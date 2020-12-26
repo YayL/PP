@@ -25,15 +25,21 @@ public class AIController implements Controller{
 
     public static void  medAI(GameObject object) { // Follow the ball
 
-        c = getObjectSpecs( object); // [0] Left [1] Right [2] Top [3] Bottom
-        b = getObjectSpecs( MovingEntity.gameObjects.get(2));// [0] Left [1] Right [2] Top [3] Bottom
+        GameObject c = object;
+        GameObject b = MovingEntity.gameObjects.get(2);
 
-        if (c[3] > b[2]+50 ) { // If paddle bottom is below ball top
-            controls[1] = false;
-            controls[0] = true;
-        }else if(c[2] < b[3] - 50){ // If paddle top is above ball bottom
+        double ballMiddle = b.getPos().getY() + b.getSize().getHeight()/2;
+        double compMiddle = c.getPos().getY() + c.getSize().getHeight()/2;
+
+        if(ballMiddle > compMiddle){
             controls[0] = false;
             controls[1] = true;
+        }else if(ballMiddle < compMiddle){
+            controls[1] = false;
+            controls[0] = true;
+        }else{
+            controls[1] = false;
+            controls[0] = false;
         }
 
     }
@@ -44,19 +50,19 @@ public class AIController implements Controller{
 
         double middle = (b[2]+b[3])/2;
 
-        if(middle > Display.Height/2) { // Lower half
-            if(b[3] > c[2]+5) { // If ball bottom is above computer top
+        if(middle >= Display.Height/2) { // Lower half
+            if(b[3] > c[2]+15) { // If ball bottom is above computer top
                 controls[0] = false;
                 controls[1] = true;
-            }else if(b[3] < c[2]+5) { // If ball bottom is below computer top
+            }else if(b[3] < c[2]+15) { // If ball bottom is below computer top
                 controls[1] = false;
                 controls[0] = true;
             }
-        }else if(middle < Display.Height/2) { // Upper half
-            if(b[2] > c[3]-5) { // If ball top is below computer bottom
+        }else if(middle <= Display.Height/2) { // Upper half
+            if(b[2] > c[3]-15) { // If ball top is below computer bottom
                 controls[0] = false;
                 controls[1] = true;
-            }else if(b[2] < c[3]-5) { // If ball top is above computer bottom
+            }else if(b[2] < c[3]-15) { // If ball top is above computer bottom
                 controls[1] = false;
                 controls[0] = true;
             }

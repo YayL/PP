@@ -34,7 +34,7 @@ public class GameState extends State {
 	
 	private void initCharacters() {
 		running = true;
-		Player player = new Player(new PlayerController(input));
+		Player player = new Player(new AIController());
 		Computer comp = new Computer(new AIController());
 		Ball ball = new Ball();
 		gameObjects.addAll(List.of(player, comp, ball));
@@ -54,11 +54,17 @@ public class GameState extends State {
 	}
 	
 	public void update() {
+
+		if(Ball.isBallDead(gameObjects.get(2))){
+
+		}
+
 		keyBinds();
 
 		if(running) {
 			super.update();
 		}
+
 	}
 	
 	public static void goalScore() {

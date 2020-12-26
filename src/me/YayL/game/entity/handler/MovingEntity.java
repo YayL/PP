@@ -2,6 +2,7 @@ package me.YayL.game.entity.handler;
 
 import java.util.List;
 
+import me.YayL.game.entity.Ball;
 import me.YayL.game.entity.Player;
 import me.YayL.game.graphics.Display;
 import me.YayL.game.states.State;
@@ -76,6 +77,7 @@ public abstract class MovingEntity extends GameObject{
 			double val = comp.getPos().getY() > 500 ?  594 : 0;
 			comp.setPos(new Pos(Width-(comp.getSize().getWidth()+5), val));
 		}
+
 	}
 
 	
