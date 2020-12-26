@@ -71,7 +71,7 @@ public class Ball extends MovingEntity{
 		vector = calculateMovement(new Pos(gameObjects.get(2).getPos().getX(), gameObjects.get(2).getPos().getY()));
 		vector.normalize();
 
-		double extraSpeed = ((Math.pow(Math.log(hits), 3))/4.1935);
+		double extraSpeed = ((Math.pow(Math.log(hits), 3))/3.5);
 
 		vector.multiply(speed + ((extraSpeed>=1) ? extraSpeed : 0)); // +40 at 180 hits
 		
