@@ -32,7 +32,7 @@ public class MenuState extends State{
 		text.addUIComponent(new UIText("MAIN MENU"));
 		button.addUIComponent(new UIText("PRESS SPACE TO"));
 		button.addUIComponent(new UIText("  START GAME"));
-		uiContainers.addAll(text);
+		uiContainers.add(text);
 		uiContainers.add(button);
 	}
 	

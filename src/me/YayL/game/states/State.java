@@ -11,7 +11,7 @@ public abstract class State {
 	
 	protected static List<GameObject> gameObjects;
 	protected static Input input;
-	protected List<UIContainer> uiContainers;
+	protected final List<UIContainer> uiContainers;
 
 	private static State state;
 
@@ -22,7 +22,7 @@ public abstract class State {
 	}
 	
 	public void update() {
-		gameObjects.forEach(gameObject -> gameObject.update());
+		gameObjects.forEach(GameObject::update);
 		uiContainers.forEach(uiContainer -> uiContainer.update(this));
 	}
 
@@ -41,10 +41,10 @@ public abstract class State {
 	}
 	
 	public static void newState(String state) {
-		if(state == "gameState") {
+		if(state.equals("gameState")) {
 			State.state = new GameState(input);
 			State gameState = State.state;
-		}else if(state == "menuState") {
+		}else if(state.equals("menuState")) {
 			State.state = new MenuState(input);
 			State menuState = State.state;
 		}

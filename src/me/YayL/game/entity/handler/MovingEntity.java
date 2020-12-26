@@ -9,14 +9,14 @@ import me.YayL.game.controllers.Controller;
 
 public abstract class MovingEntity extends GameObject{
 
-	protected Controller controller;
-	protected Movement movement;
+	protected final Controller controller;
+	protected final Movement movement;
 	
-	protected static int paddleSpeed = 5;
-	protected int ballSpeed = 5;
+	protected static final int paddleSpeed = 5;
+	protected final int ballSpeed = 5;
 	
-	protected int Width = Display.Width;
-	protected int Height = Display.Height;
+	protected final int Width = Display.Width;
+	protected final int Height = Display.Height;
 	
 	protected GameObject player;
 	protected GameObject ball;
@@ -32,7 +32,7 @@ public abstract class MovingEntity extends GameObject{
 	}
 
 	protected boolean isOutOfBounds(GameObject object) {
-		return ((object.getPos().getY() + movement.getVector().getY()) >= 0 && (object.getPos().getY() + movement.getVector().getY()) < (Height-object.getSize().getHeight())) ? true : false;
+		return (object.getPos().getY() + movement.getVector().getY()) >= 0 && (object.getPos().getY() + movement.getVector().getY()) < (Height - object.getSize().getHeight());
 	}
 
 	protected static double[] getObjectSpecs(GameObject object, int type) {

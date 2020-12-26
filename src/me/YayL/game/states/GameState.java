@@ -56,7 +56,7 @@ public class GameState extends State {
 	public void update() {
 
 		if(Ball.isBallDead(gameObjects.get(2))){
-
+			GameState.stop();
 		}
 
 		keyBinds();

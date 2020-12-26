@@ -14,7 +14,7 @@ import me.YayL.game.controllers.Controller;
 
 public class Player extends MovingEntity {
 
-	public static int speed = paddleSpeed;
+	public static final int speed = paddleSpeed;
 	
 	private final int Width = Display.Width;
 

@@ -10,7 +10,9 @@ import me.YayL.game.graphics.Vector2D;
 import me.YayL.game.controllers.AIController;
 
 public class Computer extends MovingEntity{
-	
+
+	private int compDiff = 1;
+
 	private final int speed = paddleSpeed;
 	
 	private Vector2D vector;
@@ -30,7 +32,6 @@ public class Computer extends MovingEntity{
 	}
 
 	public void update() {
-		int compDiff = 1;
 		AIController.calculateMovement(compDiff, gameObjects.get(1));
 		super.update();
 	}

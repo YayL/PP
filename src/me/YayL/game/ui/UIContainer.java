@@ -15,10 +15,10 @@ public abstract class UIContainer extends UIComponent implements Collection<UICo
 
     protected Color backgroundColor;
 
-    protected List<UIComponent> children;
+    protected final List<UIComponent> children;
 
     protected Alignment alignment;
-    protected Size windowSize;
+    protected final Size windowSize;
 
     public UIContainer(Size windowSize){
         super();

@@ -31,7 +31,7 @@ public class Ball extends MovingEntity{
 	}
 	
 	public static boolean isBallDead(GameObject ball) {
-		return (ball.getPos().getX() <= 0 || ball.getPos().getX() + (ball.getSize().getWidth()) >= 720);
+		return (ball.getPos().getX() <= 0 || ball.getPos().getX() + (ball.getSize().getWidth()) >= Display.Width);
 	}
 	
 	private int startVel(int x, int y) {
@@ -71,9 +71,9 @@ public class Ball extends MovingEntity{
 		vector = calculateMovement(new Pos(gameObjects.get(2).getPos().getX(), gameObjects.get(2).getPos().getY()));
 		vector.normalize();
 
-		double extraSpeed = ((Math.pow(Math.log(hits), 3))/6.289);
+		double extraSpeed = ((Math.pow(Math.log(hits), 3))/4.1935);
 
-		vector.multiply(speed + ((extraSpeed>=1) ? extraSpeed : 0)); // +20 at 150 hits
+		vector.multiply(speed + ((extraSpeed>=1) ? extraSpeed : 0)); // +40 at 180 hits
 		
 		if(vector != null) {
 			setVector(vector);
@@ -95,6 +95,7 @@ public class Ball extends MovingEntity{
 	}
 	
 	private Vector2D collision(Vector2D vector) {
+		Random rand = new Random();
 		double[] plr = getObjectSpecs(gameObjects.get(0), 0); // [0] Right [1] Top [2] Bottom
 		double[] comp = getObjectSpecs(gameObjects.get(1), 1);// [0] Left [1] Top [2] Bottom
 		double[] circle = getObjectSpecs(gameObjects.get(2), 2);// [0] Left [1] Right [2] Top [3] Bottom
@@ -105,11 +106,30 @@ public class Ball extends MovingEntity{
 
 		if(circle[0]+vector.getX() <= plr[0] && circle[2] < plr[2] && circle[3] > plr[1] ) { // If ball hits paddle
 			setHits(getHits()+1);
+			if(rand.nextInt(100)<10){
+				if(rand.nextInt(2)==1){
+					return new Vector2D(vector.getX()*-1, vector.getY() + rand.nextInt(8));
+				}else{
+					return new Vector2D(vector.getX()*-1, vector.getY() - rand.nextInt(8));
+				}
+
+			}else if(rand.nextInt(100)<12){
+				return new Vector2D(vector.getX()*-1,  rand.nextInt(15)-7);
+			}
 			return new Vector2D(vector.getX()*-1, vector.getY());
 		}
 		
 		if(circle[1]+vector.getX() >= comp[0] && circle[2] < comp[2] && circle[3] > comp[1]) {
 			setHits(getHits()+1);
+			if(rand.nextInt(100)<10){
+				if(rand.nextInt(2)==1){
+					return new Vector2D(vector.getX()*-1, vector.getY() + rand.nextInt(8));
+				}else{
+					return new Vector2D(vector.getX()*-1, vector.getY() - rand.nextInt(8));
+				}
+			}else if(rand.nextInt(100)<12){
+				return new Vector2D(vector.getX()*-1, rand.nextInt(15)-7);
+			}
 			return new Vector2D(vector.getX()*-1, vector.getY());
 		}
 		

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 
@@ -13,7 +14,8 @@ import me.YayL.game.states.State;
 
 public class Display extends JFrame {
 	
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	private final Canvas canvas;
 	private final Renderer renderer;
 	public static int Height, Width;
