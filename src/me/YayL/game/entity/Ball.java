@@ -61,14 +61,14 @@ public class Ball extends MovingEntity{
 		
 		size = new Size(25, 25);
 		int width = Display.Width;
-		pos = new Pos(width /2 - size.getWidth(), (Height-size.getHeight())/2);
+		pos = new Pos(width /2f - size.getWidth(), (Height-size.getHeight())/2f);
 	}
 
 	// Ball Movement: 
 	
 	public void update() {
 
-		vector = calculateMovement(new Pos(gameObjects.get(2).getPos().getX(), gameObjects.get(2).getPos().getY()));
+		vector = calculateMovement();
 		vector.normalize();
 
 		double extraSpeed = ((Math.pow(Math.log(hits), 3))/3.5);
@@ -78,14 +78,15 @@ public class Ball extends MovingEntity{
 		if(vector != null) {
 			setVector(vector);
 		}
-		
+
+		assert vector != null;
 		movement = new Movement(speed, (int) Math.round(vector.getX()), (int) Math.round(vector.getY()));
 		
 		pos.apply(movement, null);
 	}
 	
 	
-	private Vector2D calculateMovement(Pos pos) {
+	private Vector2D calculateMovement() {
 		vector = collision(getVector());
 		if(vector != null) {
 			return vector;
@@ -101,8 +102,12 @@ public class Ball extends MovingEntity{
 		double[] circle = getObjectSpecs(gameObjects.get(2), 2);// [0] Left [1] Right [2] Top [3] Bottom
 
 		if(vector == null){
-			return vector;
+			return null;
 		}
+
+		assert circle != null;
+		assert plr != null;
+		assert comp != null;
 
 		if(circle[0]+vector.getX() <= plr[0] && circle[2] < plr[2] && circle[3] > plr[1] ) { // If ball hits paddle
 			setHits(getHits()+1);
@@ -118,7 +123,7 @@ public class Ball extends MovingEntity{
 			}
 			return new Vector2D(vector.getX()*-1, vector.getY());
 		}
-		
+
 		if(circle[1]+vector.getX() >= comp[0] && circle[2] < comp[2] && circle[3] > comp[1]) {
 			setHits(getHits()+1);
 			if(rand.nextInt(100)<10){

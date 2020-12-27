@@ -43,10 +43,8 @@ public abstract class State {
 	public static void newState(String state) {
 		if(state.equals("gameState")) {
 			State.state = new GameState(input);
-			State gameState = State.state;
 		}else if(state.equals("menuState")) {
 			State.state = new MenuState(input);
-			State menuState = State.state;
 		}
 	}
 

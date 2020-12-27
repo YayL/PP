@@ -8,10 +8,9 @@ import me.YayL.game.states.State;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public abstract class UIContainer extends UIComponent implements Collection<UIContainer> {
+public abstract class UIContainer extends UIComponent {
 
     protected Color backgroundColor;
 

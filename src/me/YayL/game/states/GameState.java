@@ -34,7 +34,7 @@ public class GameState extends State {
 	
 	private void initCharacters() {
 		running = true;
-		Player player = new Player(new PlayerController(input));
+		Player player = new Player(new AIController());
 		Computer comp = new Computer(new AIController());
 		Ball ball = new Ball();
 		gameObjects.addAll(List.of(player, comp, ball));

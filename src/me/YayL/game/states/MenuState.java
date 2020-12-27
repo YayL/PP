@@ -2,6 +2,7 @@ package me.YayL.game.states;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import me.YayL.game.entity.handler.Size;
 import me.YayL.game.graphics.Display;
@@ -32,8 +33,7 @@ public class MenuState extends State{
 		text.addUIComponent(new UIText("MAIN MENU"));
 		button.addUIComponent(new UIText("PRESS SPACE TO"));
 		button.addUIComponent(new UIText("  START GAME"));
-		uiContainers.add(text);
-		uiContainers.add(button);
+		uiContainers.addAll(List.of(text, button));
 	}
 	
 	public void keyBinds() {

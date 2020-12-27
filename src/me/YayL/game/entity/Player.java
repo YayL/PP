@@ -15,21 +15,19 @@ import me.YayL.game.controllers.Controller;
 public class Player extends MovingEntity {
 
 	public static final int speed = paddleSpeed;
-	
-	private final int Width = Display.Width;
 
 	public Player(Controller controller) {
 		super(controller);
 
 		size = new Size(25, 125);
 		int height = Display.Height;
-		pos = new Pos(5, (height - size.getHeight()) / 2);
+		pos = new Pos(5, (height - size.getHeight()) / 2f);
 	}
 
 	@Override
 	public void update() {
 		if(controller instanceof AIController){
-			AIController.calculateMovement(1, gameObjects.get(0));
+			AIController.calculateMovement(2, gameObjects.get(0));
 		}
 		super.update();
 
