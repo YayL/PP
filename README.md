@@ -1,6 +1,6 @@
 # PP
 Hello! 
-This is my first 2D game. One of the pong genre which you might notice. As this is my first game it will most likely not be the best but I 
+This is my first 2D game that is published. One of the pong genre which you might notice. As this is my first game it will most likely not be the best but I 
 choose to publish it publicly in the case of anyone waning to test it out and report any issues found or just give me any tips on what I could improve in the code.
 
 Keybinds:                                                                
